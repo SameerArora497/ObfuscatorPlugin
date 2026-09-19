@@ -1,89 +1,69 @@
-# DEX控制流混淆插件版 · BlackObfuscator-ASPlugin
-
-**[English Version](README_EN.md)**
+# ObfuscatorPlugin
 
 ![](https://img.shields.io/badge/language-java-brightgreen.svg)
 
-本项目为 [BlackObfuscator](https://github.com/CodingGay/BlackObfuscator) 的Android Studio插件版，支持打包自动化混淆。功能及介绍方面请查看 [BlackObfuscator](https://github.com/CodingGay/BlackObfuscator) 源项目
+An Android Gradle plugin that automatically obfuscates compiled dex bytecode at build time, based on [BlackObfuscator](https://github.com/CodingGay/BlackObfuscator). See that project for background on the obfuscation technique itself.
 
-## 注意事项
-- 首要注意：[BlackObfuscator](https://github.com/CodingGay/BlackObfuscator) 内的注意事项
-- 若打包报错或者无效请提供 ```./gradlew tasks --all``` 信息
+Migrated to Android Gradle Plugin 9.x (the public Variant API) / Gradle 9.6, and works with compileSdk 37 (Android 17) projects.
 
-## 使用方式
+## Requirements
 
-### 准备
+- Android Gradle Plugin 9.0+ / Gradle 9.6+
+- JDK 17+
 
-#### Step 1. 根目录Gradle文件加入
+Task hooking uses the public `AndroidComponentsExtension` / `onVariants` / `SingleArtifact` Variant API instead of `applicationVariants` / `ApplicationVariant.mappingFile`, which are deprecated in AGP 9.0 and removed in AGP 10.0.
+
+## Usage
+
+**1. Add the plugin to your root `build.gradle`:**
+
 ```gradle
 repositories {
-    ...
-    // 加入仓库
     maven { url 'https://jitpack.io' }
 }
 dependencies {
-    ...
-    classpath "com.github.CodingGay:BlackObfuscator-ASPlugin:3.9"
+    classpath "com.github.SameerArora497:ObfuscatorPlugin:<tag>"
 }
 ```
-#### Step 2. app模块加入plugin
-```gradle
-...
-apply plugin: 'com.android.application'
-// 加入
-apply plugin: 'top.niunaijun.blackobfuscator'
-```
-或者你的是这样的
+
+**2. Apply it in your app module:**
+
 ```gradle
 plugins {
     id 'com.android.application'
-    // 加入
-    id 'top.niunaijun.blackobfuscator'
+    id 'com.sameer.arora.obfuscator'
 }
 ```
-#### Step 3. 添加混淆配置
+
+**3. Configure obfuscation in the app module's `build.gradle`:**
+
 ```gradle
-android {
-    ...
-
-    defaultConfig {
-       ...
-    }
-}
-
-// 加入混淆配置
-BlackObfuscator {
-    // 是否启用
+Obfuscator {
     enabled true
-    // 混淆深度
-    depth 2
-    // 需要混淆的包或者类(匹配前面一段)
-    obfClass = ["top.niunaijun", "com.abc"]
-    // blackClass中的包或者类不会进行混淆(匹配前面一段)
-    blackClass = ["top.niunaijun.black"]
-}
-
-dependencies {
-    ...
+    depth 2                                          // obfuscation depth
+    obfClass = ["com.example.app"]                   // packages/classes to obfuscate (prefix match)
+    blackClass = ["com.example.app.keepme"]           // excluded from obfuscation (prefix match)
 }
 ```
-#### Step 4. Clean一次项目，打包即可自动混淆
 
+**4. Clean and rebuild** — obfuscation runs automatically as part of the build.
 
-### License
+If a build fails or the plugin doesn't seem to run, include the output of `./gradlew tasks --all` when reporting an issue.
 
-> ```
-> Copyright 2021 Milk
->
-> Licensed under the Apache License, Version 2.0 (the "License");
-> you may not use this file except in compliance with the License.
-> You may obtain a copy of the License at
->
->    http://www.apache.org/licenses/LICENSE-2.0
->
-> Unless required by applicable law or agreed to in writing, software
-> distributed under the License is distributed on an "AS IS" BASIS,
-> WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-> See the License for the specific language governing permissions and
-> limitations under the License.
-> ```
+## License
+
+```
+Copyright 2021 Milk
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```

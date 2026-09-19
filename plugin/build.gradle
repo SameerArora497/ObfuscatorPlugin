@@ -1,11 +1,11 @@
 apply plugin: 'groovy'
-//apply plugin: 'maven'
-apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'maven-publish'
 
-group='top.niunaijun.blackobfuscator'
+group = 'com.sameer.arora.obfuscator'
+version = '1.0.0'
+
 dependencies {
-    implementation "com.android.tools.build:gradle:3.3.1"
-    implementation "com.android.tools.build:transform-api:1.5.0"
+    compileOnly "com.android.tools.build:gradle-api:9.4.0"
     implementation "commons-io:commons-io:2.5"
     //gradle sdk
     implementation gradleApi()
@@ -17,21 +17,22 @@ dependencies {
 repositories {
     mavenCentral()
     maven {
-        url uri('localRepo')
+        url uri('../localRepo')
     }
 }
 
-group='top.niunaijun.blackobfuscator'
-version='1.0.0'
-//uploadArchives {
-//    repositories {
-//        mavenDeployer {
-//            //提交到远程服务器：
-//            // repository(url: "http://www.xxx.com/repos") {
-//            //    authentication(userName: "admin", password: "admin")
-//            // }
-//            //本地的Maven地址设置为E:/Maven
-//            repository(url: uri('../localRepo'))
-//        }
-//    }
-//}
+publishing {
+    publications {
+        plugin(MavenPublication) {
+            from components.java
+            groupId = group
+            artifactId = 'plugin'
+            version = version
+        }
+    }
+    repositories {
+        maven {
+            url uri('../localRepo')
+        }
+    }
+}

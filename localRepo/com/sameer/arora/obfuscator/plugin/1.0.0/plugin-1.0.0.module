@@ -1,0 +1,76 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "com.sameer.arora.obfuscator",
+    "module": "plugin",
+    "version": "1.0.0",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "9.6.0"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 24,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api"
+      },
+      "files": [
+        {
+          "name": "plugin-1.0.0.jar",
+          "url": "plugin-1.0.0.jar",
+          "size": 20770,
+          "sha512": "0388ee024ed84b353c6341a46a17c908050ac5c21be09fcdbf9436a4e89e559585f7a1464b146198ecabaee7788d56b4ab8046b09d2fff1b5f3bd744897b0a3b",
+          "sha256": "ffc6c44c91dc3aa43e30cba53d56e015cd45e0c0e2e570b49e15bae4d968c5ee",
+          "sha1": "366d6dd851e913dcb668518985896cf8a93b7eb5",
+          "md5": "05cfc26dd5d62d17565e8cb66cd2f10b"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.version": 24,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "dependencies": [
+        {
+          "group": "commons-io",
+          "module": "commons-io",
+          "version": {
+            "requires": "2.5"
+          }
+        },
+        {
+          "group": "com.github.CodingGay.BlackObfuscator",
+          "module": "dex-tools",
+          "version": {
+            "requires": "2.2"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "plugin-1.0.0.jar",
+          "url": "plugin-1.0.0.jar",
+          "size": 20770,
+          "sha512": "0388ee024ed84b353c6341a46a17c908050ac5c21be09fcdbf9436a4e89e559585f7a1464b146198ecabaee7788d56b4ab8046b09d2fff1b5f3bd744897b0a3b",
+          "sha256": "ffc6c44c91dc3aa43e30cba53d56e015cd45e0c0e2e570b49e15bae4d968c5ee",
+          "sha1": "366d6dd851e913dcb668518985896cf8a93b7eb5",
+          "md5": "05cfc26dd5d62d17565e8cb66cd2f10b"
+        }
+      ]
+    }
+  ]
+}

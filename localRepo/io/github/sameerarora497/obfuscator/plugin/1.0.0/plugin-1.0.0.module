@@ -71,6 +71,26 @@
           "md5": "68bc216ea47cb416d92bd4f4bdf21a3a"
         }
       ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "plugin-1.0.0-sources.jar",
+          "url": "plugin-1.0.0-sources.jar",
+          "size": 5886,
+          "sha512": "3c82b68899b345c122a29bf7d6940b2a0d742f6635770762513322dd7d33c6f5a956a05b39390aff2f55128a7d52d8098a1d32522f26f994a187dfe4a02ccb42",
+          "sha256": "f34add0e208313d1cbb2fc7c222e0400b7035ac78f8e031d2ed0de27af0350d9",
+          "sha1": "57c4aa962f02bbf1ec2d0e93aea8b0259675a309",
+          "md5": "c0fe49c091a626e60024906f67447e92"
+        }
+      ]
     }
   ]
 }

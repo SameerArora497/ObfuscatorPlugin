@@ -10,6 +10,27 @@
   <groupId>io.github.sameerarora497.obfuscator</groupId>
   <artifactId>plugin</artifactId>
   <version>1.0.0</version>
+  <name>ObfuscatorPlugin</name>
+  <description>An Android Gradle plugin that automatically obfuscates compiled dex bytecode at build time.</description>
+  <url>https://github.com/SameerArora497/ObfuscatorPlugin</url>
+  <licenses>
+    <license>
+      <name>The Apache License, Version 2.0</name>
+      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>SameerArora497</id>
+      <name>Sameer Arora</name>
+      <email>SameerArora497@users.noreply.github.com</email>
+    </developer>
+  </developers>
+  <scm>
+    <connection>scm:git:git://github.com/SameerArora497/ObfuscatorPlugin.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/SameerArora497/ObfuscatorPlugin.git</developerConnection>
+    <url>https://github.com/SameerArora497/ObfuscatorPlugin</url>
+  </scm>
   <dependencies>
     <dependency>
       <groupId>commons-io</groupId>

@@ -1,5 +1,8 @@
-apply plugin: 'groovy'
-apply plugin: 'maven-publish'
+plugins {
+    id 'groovy'
+    id 'maven-publish'
+    id 'com.vanniktech.maven.publish' version '0.37.0'
+}
 
 group = 'io.github.sameerarora497.obfuscator'
 version = '1.0.0'
@@ -21,18 +24,51 @@ repositories {
     }
 }
 
+// Extra local repository, used only by this repo's own :app module for local testing
+// (`./gradlew :plugin:publish` alongside the coordinates below).
 publishing {
-    publications {
-        plugin(MavenPublication) {
-            from components.java
-            groupId = group
-            artifactId = 'plugin'
-            version = version
-        }
-    }
     repositories {
         maven {
             url uri('../localRepo')
+        }
+    }
+}
+
+mavenPublishing {
+    publishToMavenCentral()
+    // Only sign when a signing key is actually configured (real Central publishes),
+    // so local dev publishes to ../localRepo don't require a GPG key.
+    if (project.hasProperty('signingInMemoryKey') || System.getenv('ORG_GRADLE_PROJECT_signingInMemoryKey')) {
+        signAllPublications()
+    }
+
+    coordinates(group.toString(), 'plugin', version.toString())
+
+    pom {
+        name = 'ObfuscatorPlugin'
+        description = 'An Android Gradle plugin that automatically obfuscates compiled dex bytecode at build time.'
+        url = 'https://github.com/SameerArora497/ObfuscatorPlugin'
+
+        licenses {
+            license {
+                name = 'The Apache License, Version 2.0'
+                url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
+            }
+        }
+
+        developers {
+            developer {
+                // TODO: replace with your preferred public name/email before publishing
+                id = 'SameerArora497'
+                name = 'Sameer Arora'
+                email = 'SameerArora497@users.noreply.github.com'
+            }
+        }
+
+        scm {
+            url = 'https://github.com/SameerArora497/ObfuscatorPlugin'
+            connection = 'scm:git:git://github.com/SameerArora497/ObfuscatorPlugin.git'
+            developerConnection = 'scm:git:ssh://git@github.com/SameerArora497/ObfuscatorPlugin.git'
         }
     }
 }

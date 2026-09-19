@@ -21,12 +21,15 @@ Task hooking uses the public `AndroidComponentsExtension` / `onVariants` / `Sing
 buildscript {
     repositories {
         mavenCentral()
+        maven { url 'https://jitpack.io' }   // needed for the dex-tools transitive dependency
     }
     dependencies {
         classpath "io.github.sameerarora497.obfuscator:plugin:1.0.0"
     }
 }
 ```
+
+> The plugin itself is on Maven Central, but it depends on `com.github.CodingGay.BlackObfuscator:dex-tools`, which is only published on JitPack — keep that repository even though you're pulling the plugin from Central.
 
 **2. Apply it in your app module:**
 

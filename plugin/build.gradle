@@ -1,7 +1,7 @@
 apply plugin: 'groovy'
 apply plugin: 'maven-publish'
 
-group = 'com.sameer.arora.obfuscator'
+group = 'io.github.sameerarora497.obfuscator'
 version = '1.0.0'
 
 dependencies {

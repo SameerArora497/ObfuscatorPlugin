@@ -18,11 +18,13 @@ Task hooking uses the public `AndroidComponentsExtension` / `onVariants` / `Sing
 **1. Add the plugin to your root `build.gradle`:**
 
 ```gradle
-repositories {
-    maven { url 'https://jitpack.io' }
-}
-dependencies {
-    classpath "com.github.SameerArora497:ObfuscatorPlugin:<tag>"
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.github.sameerarora497.obfuscator:plugin:1.0.0"
+    }
 }
 ```
 
@@ -31,7 +33,7 @@ dependencies {
 ```gradle
 plugins {
     id 'com.android.application'
-    id 'com.sameer.arora.obfuscator'
+    id 'io.github.sameerarora497.obfuscator'
 }
 ```
 
